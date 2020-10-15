@@ -1,0 +1,33 @@
+{
+    "customer_catalog_price": {
+        "column": {
+            "entity_id": true,
+            "customer_id": true,
+            "from_date": true,
+            "to_date": true,
+            "is_active": true,
+            "sort_order": true
+        },
+        "constraint": {
+            "CUSTOMER_CATALOG_PRICE_CUSTOMER_ID_FROM_DATE_TO_DATE": true,
+            "PRIMARY": true
+        }
+    },
+    "customer_catalog_price_product": {
+        "column": {
+            "entity_id": true,
+            "customer_catalog_price_id": true,
+            "product_id": true,
+            "price": true
+        },
+        "index": {
+            "CUSTOMER_CATALOG_PRICE_PRODUCT_PRODUCT_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "CSTR_CAT_PRICE_PRD_CSTR_CAT_PRICE_ID_PRD_ID": true,
+            "CSTR_CAT_PRICE_PRD_CSTR_CAT_PRICE_ID_CSTR_CAT_PRICE_ENTT_ID": true,
+            "CSTR_CAT_PRICE_PRD_PRD_ID_CAT_PRD_ENTT_ENTT_ID": true
+        }
+    }
+}

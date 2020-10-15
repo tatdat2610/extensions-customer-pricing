@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="Extensions\CustomerPricing\Model\ResourceModel\CustomerProductPrice\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">customer_catalog_price</argument>
+            <argument name="resourceModel" xsi:type="string">Extensions\CustomerPricing\Model\ResourceModel\CustomerProductPrice</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="customer_pricing_promo_catalog_listing_data_source" xsi:type="string">Extensions\CustomerPricing\Model\ResourceModel\CustomerProductPrice\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <preference for="Extensions\CustomerPricing\Api\Data\CustomerProductPriceInterface"
+                type="Extensions\CustomerPricing\Model\CustomerProductPrice" />
+    <preference for="Extensions\CustomerPricing\Api\Data\ProductInterface"
+                type="Extensions\CustomerPricing\Model\CustomerProductPrice\Product" />
+    <preference for="Extensions\CustomerPricing\Api\CustomerProductPriceRepositoryInterface"
+                type="Extensions\CustomerPricing\Model\CustomerProductPriceRepository" />
+</config>

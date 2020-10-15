@@ -1,0 +1,21 @@
+{
+    "name": "extensions/customer-pricing",
+    "description": "Customer Pricing Extension",
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "minimum-stability": "dev",
+    "require": {
+        "magento/framework": "^102.0.0",
+        "magento/module-customer": "*",
+        "magento/module-catalog": "*",
+        "magento/module-catalog-rule": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Extensions\\CustomerPricing\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

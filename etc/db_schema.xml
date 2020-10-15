@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="customer_catalog_price" resource="default" engine="innodb" comment="Customer Catalog Price">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Entity ID"/>
+        <column xsi:type="int" name="customer_id" padding="10" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Customer ID"/>
+        <column xsi:type="datetime" name="from_date" comment="From"/>
+        <column xsi:type="datetime" name="to_date" comment="To"/>
+        <column xsi:type="smallint" name="is_active" padding="6" unsigned="false" nullable="false" identity="false"
+                default="0" comment="Is Active"/>
+        <column xsi:type="int" name="sort_order" padding="10" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Sort Order"/>
+        <constraint xsi:type="unique" referenceId="UNIQUE_CUSTOMER_CATALOG_PRICE_CUSTOMER_ID_FROM_DATE_TO_DATE">
+            <column name="customer_id"/>
+            <column name="from_date"/>
+            <column name="to_date"/>
+        </constraint>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+    </table>
+    <table name="customer_catalog_price_product" resource="default" engine="innodb" comment="Customer Catalog Price Product">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Entity ID"/>
+        <column xsi:type="int" name="customer_catalog_price_id" padding="10" unsigned="true" nullable="false"
+                identity="false"
+                default="0"
+                comment="Customer Catalog Price ID"/>
+        <column xsi:type="int" name="product_id" padding="10" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Product ID"/>
+        <column xsi:type="decimal" name="price" scale="4" precision="12" unsigned="false" nullable="false"
+                default="0" comment="Price"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="UNIQUE_CUSTOMER_CATALOG_PRICE_ID_PRODUCT_ID">
+            <column name="customer_catalog_price_id"/>
+            <column name="product_id"/>
+        </constraint>
+        <index referenceId="CUSTOMER_CATALOG_PRICE_PRODUCT_ID" indexType="btree">
+            <column name="product_id"/>
+        </index>
+        <constraint xsi:type="foreign" referenceId="CUSTOMER_CATALOG_PRICE_PRODUCT_CUSTOMER_CATALOG_PRICE" table="customer_catalog_price_product"
+                    column="customer_catalog_price_id"
+                    referenceTable="customer_catalog_price" referenceColumn="entity_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="CUSTOMER_CATALOG_PRICE_PRODUCT_CATALOG_PRODUCT_ENTITY"
+                    table="customer_catalog_price_product"
+                    column="product_id"
+                    referenceTable="catalog_product_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+    </table>
+    <table name="customer_catalog_price_flat" resource="default" engine="innodb" comment="Customer Catalog Price Flat">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Entity ID"/>
+        <column xsi:type="int" name="customer_catalog_price_id" padding="10" unsigned="true" nullable="false"
+                identity="false"
+                default="0"
+                comment="Customer Catalog Price ID"/>
+        <column xsi:type="int" name="customer_id" padding="10" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Customer ID"/>
+        <column xsi:type="int" name="product_id" padding="10" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Product ID"/>
+        <column xsi:type="decimal" name="price" scale="4" precision="12" unsigned="false" nullable="false"
+                default="0" comment="Price"/>
+        <column xsi:type="datetime" name="from_date" comment="From"/>
+        <column xsi:type="datetime" name="to_date" comment="To"/>
+        <column xsi:type="smallint" name="is_active" padding="6" unsigned="false" nullable="false" identity="false"
+                default="0" comment="Is Active"/>
+        <column xsi:type="int" name="sort_order" padding="10" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Sort Order"/>
+        <constraint xsi:type="unique"
+                    referenceId="UNIQUE_CUSTOMER_CATALOG_PRICE_FLAT_CUSTOMER_ID_PRODUCT_ID_FROM_DATE_TO_DATE">
+            <column name="customer_catalog_price_id"/>
+            <column name="customer_id"/>
+            <column name="product_id"/>
+            <column name="from_date"/>
+            <column name="to_date"/>
+        </constraint>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+    </table>
+</schema>

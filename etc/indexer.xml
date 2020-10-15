@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Indexer/etc/indexer.xsd">
+    <indexer id="customer_product_price_flat" view_id="customer_product_price_flat" class="Extensions\CustomerPricing\Model\Indexer\CustomerProductPrice\Flat">
+        <title translate="true">Customer Product Price Flat Data</title>
+        <description translate="true">Reorganize Customer Product Price structure to flat structure</description>
+    </indexer>
+</config>
