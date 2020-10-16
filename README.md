@@ -1,5 +1,5 @@
 # extensions-customer-pricing
-    This module allow you can configure specific price of product for specific customer 
+    Magento 2 module allow you can configure specific price of product for specific customer 
 
 ## Installation
     Go to root folder and run command
